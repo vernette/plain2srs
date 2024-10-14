@@ -3,7 +3,11 @@ import sys
 import requests
 from requests.exceptions import ConnectionError, Timeout
 
-from constants import ANTIFILTER_DOMAINS_URL
+from constants import (
+    ANTIFILTER_DOMAINS_URL,
+    MIN_DOMAIN_LEVEL,
+    SECOND_LEVEL_DOMAIN_SEGMENTS,
+)
 
 
 def get_antifilter_domains(timeout: int = 10) -> list:
@@ -24,3 +28,11 @@ def get_antifilter_domains(timeout: int = 10) -> list:
         )
         sys.exit(1)
     return domains
+
+
+def extract_second_level_domains(domains: list) -> set:
+    return {
+        '.'.join(domain.split('.')[-SECOND_LEVEL_DOMAIN_SEGMENTS:])
+        for domain in domains
+        if len(domain.split('.')) > MIN_DOMAIN_LEVEL
+    }
