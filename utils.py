@@ -5,6 +5,7 @@ from requests.exceptions import ConnectionError, Timeout
 
 from constants import (
     ANTIFILTER_DOMAINS_URL,
+    KEYWORDS,
     MIN_DOMAIN_LEVEL,
     SECOND_LEVEL_DOMAIN_SEGMENTS,
 )
@@ -36,3 +37,9 @@ def extract_second_level_domains(domains: list) -> set:
         for domain in domains
         if len(domain.split('.')) > MIN_DOMAIN_LEVEL
     }
+
+
+def filter_by_keywords(domains: set) -> set:
+    for keyword in KEYWORDS:
+        domains = {domain for domain in domains if keyword not in domain}
+    return domains
