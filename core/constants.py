@@ -14,7 +14,7 @@ CASINO_DOMAIN_KEYWORDS = [
     'vulkan',
     'wulcan',
     'vegas',
-    'fortuna',
+    'fortun',
     'pinup',
     '1x',
     '-win',
@@ -72,6 +72,7 @@ ILLEGAL_DOMAIN_KEYWORDS = [
     'dlplom',
     'djplom',
     'dlploum',
+    'dipllom',
     'sprav',
     'avtomat',
     'prava',
@@ -125,6 +126,7 @@ DRUG_DOMAIN_KEYWORDS = [
     'kraken',
     'krakeen',
     'kaif',
+    'gramm',
 ]
 CRYPTO_DOMAIN_KEYWORDS = [
     'bitcoin',

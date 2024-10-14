@@ -3,7 +3,7 @@ import sys
 import requests
 from requests.exceptions import ConnectionError, Timeout
 
-from constants import (
+from core.constants import (
     ANTIFILTER_DOMAINS_URL,
     KEYWORDS,
     MIN_DOMAIN_LEVEL,
