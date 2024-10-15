@@ -1,14 +1,13 @@
 import sys
 
 import requests
-from requests.exceptions import ConnectionError, Timeout
-
 from core.constants import (
     ANTIFILTER_DOMAINS_URL,
     KEYWORDS,
     MIN_DOMAIN_LEVEL,
     SECOND_LEVEL_DOMAIN_SEGMENTS,
 )
+from requests.exceptions import ConnectionError, Timeout
 
 
 def get_antifilter_domains(timeout: int = 10) -> list:
