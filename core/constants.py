@@ -15,12 +15,23 @@ CASINO_DOMAIN_KEYWORDS = [
     'vulkan',
     'wulcan',
     'vegas',
+    'clubnika',
     'fortun',
     'pinup',
+    'pin-up',
+    'eldor',
+    'e1dor',
+    'e1d0r',
+    'eldara',
+    'lucky',
+    'mega5',
+    'ruletk',
+    'ryletk',
     '1x',
     '-win',
     '1win',
     'casi',
+    'cassi',
     'cas1',
     'kasi',
     'kazi',
@@ -34,6 +45,7 @@ CASINO_DOMAIN_KEYWORDS = [
     'admiral',
     'adm1ral',
     'bet',
+    'dep',
     'poker',
     'p0ker',
     'blackjack',
@@ -44,6 +56,9 @@ CASINO_DOMAIN_KEYWORDS = [
     'stavki',
     'zerkalo',
     '777',
+    'selector',
+    'mirror',
+    'zerkalo',
 ]
 FRAUD_DOMAIN_KEYWORDS = [
     'fraud',
@@ -55,6 +70,7 @@ FRAUD_DOMAIN_KEYWORDS = [
     'money',
     'account',
     'billing',
+    'business',
     'password',
     'invoice',
     'vzyatka',
@@ -64,6 +80,9 @@ FRAUD_DOMAIN_KEYWORDS = [
     'lombard',
     'ferma',
     'dolg',
+    'zaym',
+    'zaim',
+    'kredit',
 ]
 ILLEGAL_DOMAIN_KEYWORDS = [
     'rape',
@@ -192,6 +211,14 @@ KEYWORDS = set(
     + DRUG_DOMAIN_KEYWORDS
     + CRYPTO_DOMAIN_KEYWORDS
 )
+HTML_KEYWORDS = ['test']
+HEADERS = {
+    'User-Agent': (
+        'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) '
+        'Gecko/20100101 Firefox/131.0'
+    )
+}
+REQUEST_TIMEOUT: int = 5
 SING_BOX_TEMPLATE: dict = {
     'version': 1,
     'rules': [{'domain_suffix': []}],
