@@ -18,6 +18,7 @@ from utils.file_operations import save_json
 def main(input_file: str, output_file: str):
     if output_file is None:
         output_file = 'output'
+    # TODO: If output file exists, ask user if they want to overwrite
     # TODO: Add processing of input file argument
     second_level_domains: set[str] = extract_second_level_domains(
         domains=asyncio.run(get_antifilter_domains())
