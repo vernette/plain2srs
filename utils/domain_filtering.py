@@ -88,6 +88,8 @@ def filter_domains_by_keywords(domains: set) -> set[str]:
     Returns:
         set[str]: A set of domains that do not contain the specified keywords.
     """
-    for keyword in DOMAIN_KEYWORDS:
-        domains = {domain for domain in domains if keyword not in domain}
-    return domains
+    return {
+        domain
+        for domain in domains
+        if not any(keyword in domain for keyword in DOMAIN_KEYWORDS)
+    }
