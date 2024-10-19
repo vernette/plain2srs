@@ -15,9 +15,11 @@ def main(input_file: str = None, output_file: str = None):
     second_level_domains: set[str] = extract_second_level_domains(
         domains=asyncio.run(get_antifilter_domains())
     )
+    print(f'Got {len(second_level_domains)} second-level domains')
     keyword_filtered_domains: set[str] = filter_domains_by_keywords(
         domains=second_level_domains
     )
+    print(f'Got {len(keyword_filtered_domains)} domains after filtering')
 
 
 if __name__ == '__main__':
