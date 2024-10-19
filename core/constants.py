@@ -2,6 +2,17 @@ ANTIFILTER_DOMAINS_URL: str = 'https://antifilter.download/list/domains.lst'
 OUTPUT_DIR: str = 'output'
 SECOND_LEVEL_DOMAIN_PARTS: int = 2
 MIN_REQUIRED_DOMAIN_PARTS: int = 1
+HEADERS = {
+    'User-Agent': (
+        'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) '
+        'Gecko/20100101 Firefox/131.0'
+    )
+}
+REQUEST_TIMEOUT: int = 5
+SING_BOX_TEMPLATE: dict = {
+    'version': 1,
+    'rules': [{'domain_suffix': []}],
+}
 CASINO_DOMAIN_KEYWORDS = [
     'up-x',
     'upx',
@@ -212,14 +223,3 @@ DOMAIN_KEYWORDS = set(
     + DRUG_DOMAIN_KEYWORDS
     + CRYPTO_DOMAIN_KEYWORDS
 )
-HEADERS = {
-    'User-Agent': (
-        'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) '
-        'Gecko/20100101 Firefox/131.0'
-    )
-}
-REQUEST_TIMEOUT: int = 5
-SING_BOX_TEMPLATE: dict = {
-    'version': 1,
-    'rules': [{'domain_suffix': []}],
-}
