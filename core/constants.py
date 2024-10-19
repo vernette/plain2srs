@@ -203,7 +203,7 @@ CRYPTO_DOMAIN_KEYWORDS = [
     'fundamentalanalysis',
     'liquidity',
 ]
-KEYWORDS = set(
+DOMAIN_KEYWORDS = set(
     CASINO_DOMAIN_KEYWORDS
     + FRAUD_DOMAIN_KEYWORDS
     + ILLEGAL_DOMAIN_KEYWORDS
@@ -211,7 +211,6 @@ KEYWORDS = set(
     + DRUG_DOMAIN_KEYWORDS
     + CRYPTO_DOMAIN_KEYWORDS
 )
-HTML_KEYWORDS = ['test']
 HEADERS = {
     'User-Agent': (
         'Mozilla/5.0 (X11; Linux x86_64; rv:131.0) '
