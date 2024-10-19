@@ -10,11 +10,11 @@ def check_output_dir() -> None:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-def save_json(json_data: str, filename: str = None) -> None:
+def save_json(json_data: dict, filename: str = None) -> None:
     """Save JSON data to a file.
 
     Args:
-        json_data (str): The JSON data to save.
+        json_data (dict): The JSON data to save.
         filename (str, optional): The name of the file to save. Defaults to
             'ruleset.json'.
     """
