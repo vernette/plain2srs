@@ -3,7 +3,10 @@
 import argparse
 import asyncio
 
-from utils.conversion import convert_plain_domains_to_json_ruleset
+from utils.conversion import (
+    compile_srs_from_ruleset,
+    convert_plain_domains_to_json_ruleset,
+)
 from utils.domain_filtering import (
     extract_second_level_domains,
     filter_domains_by_keywords,
@@ -12,7 +15,9 @@ from utils.domain_filtering import (
 from utils.file_operations import save_json
 
 
-def main(input_file: str = None, output_file: str = None):
+def main(input_file: str, output_file: str):
+    if output_file is None:
+        output_file = 'output'
     # TODO: Add processing of input file argument
     second_level_domains: set[str] = extract_second_level_domains(
         domains=asyncio.run(get_antifilter_domains())
@@ -26,9 +31,8 @@ def main(input_file: str = None, output_file: str = None):
     ruleset_json = convert_plain_domains_to_json_ruleset(
         domains=keyword_filtered_domains
     )
-    if output_file is None:
-        output_file = 'ruleset.json'
-    save_json(json_data=ruleset_json, filename=output_file)
+    save_json(json_data=ruleset_json, output_file=output_file)
+    compile_srs_from_ruleset(ruleset_file=output_file)
 
 
 if __name__ == '__main__':
