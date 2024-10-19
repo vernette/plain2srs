@@ -1,4 +1,5 @@
 ANTIFILTER_DOMAINS_URL: str = 'https://antifilter.download/list/domains.lst'
+OUTPUT_DIR: str = 'output'
 SECOND_LEVEL_DOMAIN_PARTS: int = 2
 MIN_REQUIRED_DOMAIN_PARTS: int = 1
 CASINO_DOMAIN_KEYWORDS = [

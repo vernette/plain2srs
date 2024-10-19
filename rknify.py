@@ -3,11 +3,13 @@
 import argparse
 import asyncio
 
+from utils.conversion import convert_plain_domains_to_json_ruleset
 from utils.domain_filtering import (
     extract_second_level_domains,
     filter_domains_by_keywords,
     get_antifilter_domains,
 )
+from utils.file_operations import save_json
 
 
 def main(input_file: str = None, output_file: str = None):
@@ -20,6 +22,13 @@ def main(input_file: str = None, output_file: str = None):
         domains=second_level_domains
     )
     print(f'Got {len(keyword_filtered_domains)} domains after filtering')
+
+    ruleset_json = convert_plain_domains_to_json_ruleset(
+        domains=keyword_filtered_domains
+    )
+    if output_file is None:
+        output_file = 'ruleset.json'
+    save_json(json_data=ruleset_json, filename=output_file)
 
 
 if __name__ == '__main__':
