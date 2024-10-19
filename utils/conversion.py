@@ -27,6 +27,7 @@ def compile_srs_from_ruleset(ruleset_file: str) -> None:
         ruleset_file (str): The name of the ruleset file.
     """
     print(f'Compiling {ruleset_file}.srs...')
+    # NOTE: sing-box must be in the PATH
     subprocess.run(
         [
             'sing-box',
