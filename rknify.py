@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import asyncio
 import argparse
+import asyncio
 
 from utils.domain_filtering import (
     extract_second_level_domains,
