@@ -1,6 +1,6 @@
 ANTIFILTER_DOMAINS_URL: str = 'https://antifilter.download/list/domains.lst'
-SECOND_LEVEL_DOMAIN_SEGMENTS: int = 2
-MIN_DOMAIN_LEVEL: int = 1
+SECOND_LEVEL_DOMAIN_PARTS: int = 2
+MIN_REQUIRED_DOMAIN_PARTS: int = 1
 CASINO_DOMAIN_KEYWORDS = [
     'up-x',
     'upx',

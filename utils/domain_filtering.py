@@ -1,44 +1,54 @@
-import sys
+from asyncio.exceptions import TimeoutError
 
-import requests
+from aiohttp import (
+    ClientConnectionError,
+    ClientSession,
+    ClientTimeout,
+)
+
 from core.constants import (
     ANTIFILTER_DOMAINS_URL,
-    KEYWORDS,
-    MIN_DOMAIN_LEVEL,
-    SECOND_LEVEL_DOMAIN_SEGMENTS,
+    DOMAIN_KEYWORDS,
+    MIN_REQUIRED_DOMAIN_PARTS,
+    REQUEST_TIMEOUT,
+    SECOND_LEVEL_DOMAIN_PARTS,
 )
-from requests.exceptions import ConnectionError, Timeout
 
 
-def get_antifilter_domains(timeout: int = 10) -> list:
-    domains = []
+async def get_antifilter_domains(timeout: int = REQUEST_TIMEOUT) -> list[str]:
     try:
-        with requests.get(
-            ANTIFILTER_DOMAINS_URL, timeout=timeout, stream=True
-        ) as response:
-            for line in response.iter_lines():
-                domains.append(line.decode('utf-8').strip())
-    except Timeout:
+        timeout_obj = ClientTimeout(total=timeout)
+        async with ClientSession(timeout=timeout_obj) as session:
+            async with session.get(ANTIFILTER_DOMAINS_URL) as response:
+                domains = [
+                    line.decode('utf-8').strip()
+                    async for line in response.content
+                ]
+    except TimeoutError:
         print("Error! Didn't receive any response from antifilter!")
-        sys.exit(1)
-    except ConnectionError:
+        quit(1)
+    except ClientConnectionError:
         print(
             "Error! Couldn't connect to antifilter! "
             'Check your internet connection.'
         )
-        sys.exit(1)
+        quit(1)
+    except Exception as e:
+        print(f'Unexpected error! {e}')
+
+    print(f'Got {len(domains)} domains from antifilter')
     return domains
 
 
-def extract_second_level_domains(domains: list) -> set:
+def extract_second_level_domains(domains: list) -> set[str]:
     return {
-        '.'.join(domain.split('.')[-SECOND_LEVEL_DOMAIN_SEGMENTS:])
+        '.'.join(domain.split('.')[-SECOND_LEVEL_DOMAIN_PARTS:])
         for domain in domains
-        if len(domain.split('.')) > MIN_DOMAIN_LEVEL
+        if len(domain.split('.')) > MIN_REQUIRED_DOMAIN_PARTS
     }
 
 
-def filter_by_keywords(domains: set) -> set:
-    for keyword in KEYWORDS:
+def filter_domains_by_keywords(domains: set) -> set[str]:
+    for keyword in DOMAIN_KEYWORDS:
         domains = {domain for domain in domains if keyword not in domain}
     return domains
