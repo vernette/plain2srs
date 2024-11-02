@@ -15,11 +15,22 @@ from utils.domain_filtering import (
 from utils.file_operations import save_json
 
 
-def main(input_file: str, output_file: str):
-    if output_file is None:
-        output_file = 'output'
-    # TODO: If output file exists, ask user if they want to overwrite
-    # TODO: Add processing of input file argument
+def process_input_file(input_file: str, output_file: str) -> list[str]:
+    with open(input_file, 'r', encoding='utf-8') as f:
+        domains = [line.strip() for line in f if line]
+    second_level_domains: set[str] = extract_second_level_domains(
+        domains=domains
+    )
+    print(f'Got {len(second_level_domains)} second-level domains')
+    ruleset_json = convert_plain_domains_to_json_ruleset(
+        domains=second_level_domains
+    )
+    save_json(json_data=ruleset_json, output_file=output_file)
+    compile_srs_from_ruleset(ruleset_file=output_file)
+    quit(0)
+
+
+def process_antifilter_domains(output_file: str = 'output'):
     second_level_domains: set[str] = extract_second_level_domains(
         domains=asyncio.run(get_antifilter_domains())
     )
@@ -34,6 +45,16 @@ def main(input_file: str, output_file: str):
     )
     save_json(json_data=ruleset_json, output_file=output_file)
     compile_srs_from_ruleset(ruleset_file=output_file)
+    quit(0)
+
+
+def main(input_file: str, output_file: str):
+    if output_file is None:
+        output_file = 'output'
+    # TODO: If output file exists, ask user if they want to overwrite
+    if input_file is not None:
+        process_input_file(input_file, output_file)
+    process_antifilter_domains(output_file)
 
 
 if __name__ == '__main__':
