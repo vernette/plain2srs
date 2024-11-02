@@ -66,7 +66,10 @@ def main(input_file: str, output_file: str, compile_srs: bool) -> None:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Script to convert domain list to srs sing-box format',
+        description=(
+            'Script to convert domain list to JSON rule-set'
+            'or SRS sing-box format'
+        ),
     )
     parser.add_argument('-i', '--input', type=str, help='Input file path')
     parser.add_argument('-o', '--output', type=str, help='Output file path')
@@ -74,7 +77,7 @@ if __name__ == '__main__':
         '-c',
         '--compile-srs',
         action='store_true',
-        help='Compile SRS file from JSON',
+        help='Compile SRS file from JSON rule-set',
     )
     args = parser.parse_args()
     main(args.input, args.output, args.compile_srs)
