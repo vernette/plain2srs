@@ -18,7 +18,16 @@ Print the help message:
 ./plain2srs.py -h
 ```
 
-Compile a SRS file from a plain text file:
+Generate JSON file from the antifilter list:
+
+```bash
+./plain2srs.py -o output_filename
+```
+
+Generate JSON file and compile an SRS file from a plain text file:
+
+> [!NOTE]
+> sing-box must be in the path to compile the SRS file
 
 ```bash
 ./plain2srs.py -i domains.txt -o output_filename -c
