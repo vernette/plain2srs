@@ -67,7 +67,7 @@ def main(input_file: str, output_file: str, compile_srs: bool) -> None:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description=(
-            'Script to convert domain list to JSON rule-set'
+            'Script to convert domain list to JSON rule-set '
             'or SRS sing-box format'
         ),
     )
