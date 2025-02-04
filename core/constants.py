@@ -216,7 +216,9 @@ CRYPTO_DOMAIN_KEYWORDS = [
     'liquidity',
 ]
 OPT_DOMAIN_KEYWORDS = [
-    'google'
+    'google',
+    'pages.dev',
+    'github.io'
 ]
 DOMAIN_KEYWORDS = set(
     CASINO_DOMAIN_KEYWORDS
