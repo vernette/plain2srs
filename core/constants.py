@@ -219,7 +219,8 @@ OPT_DOMAIN_KEYWORDS = [
     'google',
     'pages.dev',
     'github.io',
-    'ooguy.com'
+    'ooguy.com',
+    'cloudfront.net'
 ]
 DOMAIN_KEYWORDS = set(
     CASINO_DOMAIN_KEYWORDS
